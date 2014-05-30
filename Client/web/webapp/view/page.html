@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<polymer-element name="x-page">
+  <template>
+    <style>
+      h1,h2,h3,h4,p{
+        font-family: 'Ubuntu', sans-serif;
+      }
+      .nav{
+        magin-left: 20px;
+        margin-top: 80px;
+        width: 15%;
+        float: left;
+        border: 3px solid #046380;
+        border-radius: 10%;
+      }
+      .cont{
+        margin-right: 20px;
+        width: 80%;
+        float: right;
+      }
+      .navlink:hover{
+        color: #046380;
+        text-decoration:underline;
+        cursor: pointer;
+      }
+      .tableProd{
+        font-family: 'Ubuntu', sans-serif;
+        text-align: left;
+      }
+      .all{
+        overflow: auto;
+      }
+    </style>
+    <div class="all">
+    <div class="nav">
+        <p class="navlink" on-click="{{accueil}}">Accueil</p>
+        <p class="navlink" on-click="{{produits}}" >Produits</p>
+      </div>
+    
+    
+      <h3>{{getText}}</h3>
+      <div id="afficheAccueil">
+      <p>{{getMessage}}</p>
+      </div>
+    
+    
+   
+    <div id="afficheProduit">
+    <div class="cont">
+        
+        <select  selectedIndex="{{currentIndex}}" on-change="{{change}}">
+          <option value="tous">Tous</option>
+          <option value="vespa">Vespa</option>
+          <option value="accessoire">Accessoire</option>
+        </select>
+        
+        <table class="tableProd">
+          <tbody>
+          <tr>
+          <th>{{getnom}}</th>
+          <th>{{getdes}}</th>
+          <th>{{getprix}}</th>
+          </tr>
+          <template repeat="{{ jsonobject in jsonlist }}">
+            <tr>
+                <template repeat="{{ value in jsonobject.values }}">
+                  <td>{{value}}</td>
+                </template>
+            </tr>
+          </template>
+          
+        </tbody>
+        </table>
+    </div>
+    </div></div>
+  </template>
+  <script type="application/dart;component=1" src="../worker/wrkClient.dart"></script>
+</polymer-element>
+
+
+
